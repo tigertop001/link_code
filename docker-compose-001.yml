@@ -1,0 +1,57 @@
+version: '3'
+
+volumes:
+  mysql:
+  redis:
+
+
+networks:
+  infra-net:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql:8.3.0
+    container_name: mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'nacos'
+      MYSQL_ROOT_PASSWORD: '123456'
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      infra-net:
+        aliases:
+          - mysql-server
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1000M
+        reservations:
+          cpus: '0.05'
+          memory: 200M
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis:/data
+    networks:
+      infra-net:
+        aliases:
+          - redis-server
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 500M
+        reservations:
+          cpus: '0.05'
+          memory: 200M

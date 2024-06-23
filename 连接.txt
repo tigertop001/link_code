@@ -1,0 +1,107 @@
+sqlflow(sq转树形图)
+https://sqlflow.gudusoft.com/#/
+
+Authelia
+https://www.authelia.com/
+
+Ably
+https://ably.com/accounts/52602/apps/87577/getting_started
+
+
+NATS-JetStream
+https://mp.weixin.qq.com/s?__biz=MzU5MjA3MzMzMA==&mid=2247485802&idx=1&sn=2eec827318e762ec0cbaedaa93f3372c&chksm=fe240e77c953876157bd16686197f94090ee62782153bb90a1552b0c09d210af768dd8ed8cdb&cur_album_id=3112902182745522177&scene=189#wechat_redirect
+
+
+nats-io (git)
+https://github.com/nats-io/nats.js/issues/461
+
+JimsGarage【Authelia】 (git)
+https://github.com/JamesTurland/JimsGarage
+
+Authelia视频讲解
+https://www.youtube.com/watch?v=u6H-Qwf4nZA
+https://www.youtube.com/watch?v=5KtbmrUwYNQ&list=PLjLkaXQ35321q4IpOpAif7kmoExySwpF-
+https://www.youtube.com/watch?v=u6H-Qwf4nZA&list=PLGSF1yrOo4mhTVB-2eqPTGYuOh03fDNN_
+https://www.youtube.com/watch?v=IWNypK2WxB0&t=114s
+https://www.youtube.com/watch?v=upKaY6VkQqw&t=29s
+
+
+goth (git)
+https://github.com/markbates/goth
+
+
+goth学习网站：
+https://wathsara.medium.com/asgardeo-authentication-with-golang-and-goth-2be8eea7dbe7
+https://mehdihadeli.github.io/awesome-go-education/auth-oauth/
+
+
+oauth2 (git)
+https://github.com/go-oauth2/oauth2
+
+Go 中的 OAuth2:
+https://pkg.go.dev/golang.org/x/oauth2
+
+ants (git)
+https://github.com/panjf2000/ants
+
+Authz (git)
+https://github.com/eko/authz
+https://github.com/eko/authz/tree/master
+
+Authz学习网站：
+https://mehdihadeli.github.io/awesome-go-education/auth-oauth/
+
+
+nginx internal nginx internal用法：
+https://blog.51cto.com/u_14224/10180642
+https://nginx.org/en/docs/http/ngx_http_core_module.html#internal
+
+
+利用nginx内部访问特性实现静态资源授权访问
+https://blog.csdn.net/leftfist/article/details/136262034
+
+unraid官网：
+https://unraid.net/
+
+宙斯计划官网：
+https://ml.energy/zeus/
+
+工作流cadence (git)
+https://github.com/uber/cadence
+
+工作流cadence (git)
+https://github.com/apache/apisix-dashboard
+
+Cadence文档：
+https://www.instaclustr.com/support/documentation/
+https://cadenceworkflow.io/docs/use-cases/provisioning/
+
+
+
+apisix(前端界面操作Apache APISIX):
+https://cadenceworkflow.io/
+
+分布式图形数据库系统：
+https://www.nebula-graph.io/
+
+Golang|Gorm如何实现CreateOrUpdate?:
+https://www.hackerxiao.online/2023/10/08/gormcreateorupdate/
+
+
+
+浏览和维护etcd数据和资源-etcdv3-browser(git): 
+https://github.com/gohutool/boot4go-etcdv3-browser
+
+
+Java客户端容灾:
+https://nacos.io/docs/v2/guide/user/failover/
+
+nacos背景信息:
+https://nacos.io/zh-cn/blog/apisix.html
+
+GEN 自动生成 GORM 模型结构体文件及使用示例:
+https://segmentfault.com/a/1190000042502370?sort=votes
+
+Go编译常用参数:
+https://juejin.cn/post/7096772208999006244
+
