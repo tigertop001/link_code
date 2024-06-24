@@ -1,0 +1,197 @@
+Name: tenant.center.rpc
+ListenOn: 192.168.41.1:8080
+
+
+DatabaseConf:
+  Datasource: root:zKNp4@+*ch-3591n0C@tcp(192.168.41.111:4000)/gamming-ecosystem?charset=utf8mb4&parseTime=true
+
+DtmGrpcConf:
+  Host: etcd://192.168.41.1:2379/dtmservice
+  Target: etcd://etcd:2379/tenant.center.rpc
+Log:
+  ServiceName: userCenterAdminRpcLogger
+  Mode: console
+  Path: /home/data/logs/core/rpc
+  Encoding: plain
+  Level: info
+  Compress: false
+  KeepDays: 7
+  StackCoolDownMillis: 100
+
+RedisConf:
+  Host: 192.168.41.111:6379
+#  Pass: "123456"
+
+
+
+Name: tenant.center.bff
+Host: 192.168.41.1
+Port: 8888
+
+DatabaseConf:
+  Datasource: root:zKNp4@+*ch-3591n0C@tcp(192.168.41.111:4000)/gamming-ecosystem?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+TenantCenterRpc:
+  Timeout: 5000
+  Target: nacos://192.168.41.110:8848/tenant.center.rpc?namespaceId=69bbc87b-f640-4a06-89b2-ece5e649e7e9&groupName=test_group&timeout=5000s
+  NonBlock: true
+
+DtmGrpcConf:
+  Host: etcd://192.168.41.1:2379/dtmservice
+
+Log:
+  ServiceName: tenantCenterBffLogger
+  Mode: console
+  Path: /home/data/logs/core/rpc
+  Encoding: plain
+  Level: info
+  Compress: false
+  KeepDays: 7
+  StackCoolDownMillis: 100
+
+
+
+Name: user.center.admin.bff
+Host: 192.168.41.1
+Port: 9100
+Timeout: 6000
+
+Auth:
+  AccessSecret: jS6VKDtsJf3z1n2VKDtsJf3z1n2
+  AccessExpire: 259200
+
+Log:
+  ServiceName: userCenterLogger
+  Mode: console
+  Encoding: plain
+  Path: /home/data/logs/core/api
+  Level: info
+  Compress: false
+  KeepDays: 7
+  StackCoolDownMillis: 100
+
+Captcha:
+  KeyLong: 5
+  ImgWidth: 240
+  ImgHeight: 80
+  Driver: digit
+
+DatabaseConf:
+  Type: mysql
+  Host: 192.168.41.111
+  Port: 4000
+  DBName: gamming-ecosystem
+  Username: root
+  Password: "zKNp4@+*ch-3591n0C"
+  MaxOpenConn: 100
+  SSLMode: disable
+  CacheTime: 5
+
+ProjectConf:
+  DefaultRoleId: 1  # default role id when register
+  DefaultDepartmentId: 1  # default department id when register
+  DefaultPositionId: 1 # default position id when register
+  EmailCaptchaExpiredTime: 600 # the expired time for email captcha
+  SmsTemplateId: xxx  # The template id for sms
+  SmsAppId: xxx  # the app id for sms
+  SmsSignName: xxx  # the signature name of sms
+  SmsParamsType: json # the type of sms param, support json and array
+  RegisterVerify: captcha # register captcha type, support captcha, email, sms, sms_or_email
+  LoginVerify: captcha # login captcha type, support captcha, email, sms, sms_or_email, all
+  ResetVerify: email # reset captcha type, support email, sms, sms_or_email
+  AllowInit: true # if false, ban initialization
+
+Prometheus:
+  Host: 0.0.0.0
+  Port: 4000
+  Path: /metrics
+
+CasbinConf:
+  ModelText: |
+    [request_definition]
+    r = sub, obj, act
+    [policy_definition]
+    p = sub, obj, act
+    [role_definition]
+    g = _, _
+    [policy_effect]
+    e = some(where (p.eft == allow))
+    [matchers]
+    m = r.sub == p.sub && keyMatch2(r.obj,p.obj) && r.act == p.act
+
+I18nConf:
+  Dir: # set the path of locale if you need to load files
+
+CROSConf:
+  Address: '*'    # if it is *, allow all ip and address. e.g. http://example.com
+
+
+RedisConf:
+  Host: 192.168.41.110:6379
+  Db: 0
+  Pass: "123456"
+
+UserCenterRpc:
+  Endpoints:
+    - 192.168.41.1:9101
+  Timeout: 5000
+  NonBlock: true
+
+
+JobRpc:
+  Timeout: 5000
+  Target: nacos://192.168.41.110:8848/user.center.admin.rpc?namespaceId=69bbc87b-f640-4a06-89b2-ece5e649e7e9&groupName=test_group&timeout=5000s
+  NonBlock: true
+
+McmsRpc:
+  Endpoints:
+    - 192.168.41.1:9103
+  NonBlock: true
+  Timeout: 5000
+
+
+
+
+Name: user.center.admin.rpc
+ListenOn: 192.168.41.1:9101
+
+DatabaseConf:
+  Datasource: root:zKNp4@+*ch-3591n0C@tcp(192.168.41.111:4000)/gamming-ecosystem?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+Log:
+  ServiceName: coreRpcLogger
+  Mode: file
+  Path: /home/data/logs/core/rpc
+  Encoding: json
+  Level: info
+  Compress: false
+  KeepDays: 7
+  StackCoolDownMillis: 100
+
+RedisConf:
+  Host: 192.168.41.110:6379
+
+Prometheus:
+  Host: 0.0.0.0
+  Port: 4001
+  Path: /metrics
+
+CasbinConf:
+  ModelText: |
+    [request_definition]
+    r = sub, obj, act
+    [policy_definition]
+    p = sub, obj, act
+    [role_definition]
+    g = _, _
+    [policy_effect]
+    e = some(where (p.eft == allow))
+    [matchers]
+    m = r.sub == p.sub && keyMatch2(r.obj,p.obj) && r.act == p.act
+
+ #Tracing Analysis
+Telemetry:
+  Name: core-rpc
+  Endpoint: localhost:4317
+  Sampler: 1.0
+  Batcher: otlpgrpc # grpc
